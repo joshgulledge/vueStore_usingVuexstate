@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import filterProducts from '../products/filter-products';
 
 const store = createStore({
   state() {
@@ -40,11 +41,20 @@ const store = createStore({
         description: 'Everything you need for traction on that thrilling ice climb.',
         image: 'mega-pokey-kit.jpg',
       }],
+      cart: [],
     };
+  },
+  getters: {
+    getFilteredProducts(state) {
+      return (filter) => filterProducts(filter, state.products);
+    },
   },
   mutations: {
     setUser(state, user) {
       state.user = user;
+    },
+    setCart(state, item) {
+      state.cart.push(item);
     },
   },
 });

@@ -18,7 +18,7 @@
         </div>
         <div class="price-buy">
           <span class="price">${{product.price.toFixed(2)}}</span>
-          <span><button class="primary buy">Buy</button></span>
+          <span><button @click=buyItem(product) class="primary buy">Buy</button></span>
         </div>
       </div>
     </div>
@@ -26,7 +26,6 @@
 </template>
 
 <script>
-import filterProducts from './filter-products';
 
 export default {
   name: 'Products',
@@ -39,10 +38,13 @@ export default {
     setFilter(filter) {
       this.filter = filter;
     },
+    buyItem(item) {
+      this.$store.commit('setCart', item);
+    },
   },
   computed: {
     visibleProducts() {
-      return filterProducts(this.filter, this.$store.state.products);
+      return this.$store.getters.getFilteredProducts(this.filter);
     },
   },
 };
