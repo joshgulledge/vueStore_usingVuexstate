@@ -29,6 +29,9 @@
 
 export default {
   name: 'Products',
+  created() {
+    this.$store.dispatch('fetchProducts');
+  },
   data() {
     return {
       filter: null,
