@@ -30,7 +30,7 @@
 export default {
   name: 'Products',
   created() {
-    this.$store.dispatch('fetchProducts');
+    this.$store.dispatch('products/fetchProducts');
   },
   data() {
     return {
@@ -42,12 +42,12 @@ export default {
       this.filter = filter;
     },
     buyItem(item) {
-      this.$store.commit('setCart', item);
+      this.$store.commit('products/setCart', item);
     },
   },
   computed: {
     visibleProducts() {
-      return this.$store.getters.getFilteredProducts(this.filter);
+      return this.$store.getters.['products/getFilteredProducts'](this.filter);
     },
   },
 };

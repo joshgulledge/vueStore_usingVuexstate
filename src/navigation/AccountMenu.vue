@@ -31,6 +31,7 @@ export default {
   methods: {
     signOut() {
       this.showMenu = false;
+      this.$store.commit('users/setUser', null);
     },
   },
 };
