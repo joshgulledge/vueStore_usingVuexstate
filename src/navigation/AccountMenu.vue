@@ -17,6 +17,8 @@
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex';
+
 export default {
   data() {
     return {
@@ -24,14 +26,17 @@ export default {
     };
   },
   computed: {
-    user() {
-      return this.$store.state.users.user;
-    },
+    ...mapState('users', ['user']),
+    // user() {
+    //   return this.$store.state.users.user;
+    // },
   },
   methods: {
+    ...mapMutations('users', ['setUser']),
     signOut() {
       this.showMenu = false;
-      this.$store.commit('users/setUser', null);
+      this.setUser(null);
+      // this.$store.commit('users/setUser', null);
     },
   },
 };
