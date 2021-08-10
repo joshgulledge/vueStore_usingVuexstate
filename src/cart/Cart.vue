@@ -34,11 +34,11 @@ export default {
   },
   computed: {
     cartItems() {
-      return this.$store.state.cart;
+      return this.$store.state.products.cart;
     },
     cartTotal() {
-      if (this.$store.state.cart.length > 0) {
-        return this.$store.state.cart.reduce((curr, next) => curr + next.price, 0);
+      if (this.$store.state.products.cart.length > 0) {
+        return this.$store.state.products.cart.reduce((curr, next) => curr + next.price, 0);
       }
       return 0;
     },
